@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <style>
+    html,
+    body,
+    #map-canvas {
+        height: 100%;
+        width: 90%;
+        margin: 0px;
+        padding: 0px
+    }
+    #points-panel {
+        position: absolute;
+        right: 1%;
+        top: 2%;
+        background: ghostwhite;
+        width: 25%;
+        padding: 10px;
+    }
+    #points-panel li span{
+      margin-right: 5%;
+    }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/Users/jpribesh/Desktop/Code/BanditSignBoss/public/javascripts/buildRoute.js"></script>
+
+</head>
+
+<body>
+    <div id="map-canvas"></div>
+    <div id="points-panel" class="panel panel-default">
+        <div class="panel-heading">Route Points</div>
+        <ul id="points-list" class="list-group">
+
+        </ul>
+        <input class="btn btn-default" type="submit" onclick="calcRoute();">
+    </div>
+    <div id="directions_panel" class="panel panel-default">
+            <div class="panel-heading">Directions</div>
+    </div>
+</body>
+
+</html>

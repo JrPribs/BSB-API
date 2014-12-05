@@ -1,0 +1,67 @@
+extends layout
+
+block content
+    div.page-header
+        h1= title
+
+    div#main-panel.panel.panel-default.col-lg-6
+        div.panel-heading
+            h3.h2.text-center.panel-title Campaigns
+
+        div.panel-group#accordion(role="tablist" aria-multiselectable="true")
+
+            div.panel.panel-default
+                div.panel-heading#headingOne(role="tab")
+                    h4.panel-title
+                        a(data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne") Create a new campaign
+                div#collapseOne.panel-collapse.collapse(role="tabpanel" aria-labelledby="headingOne")
+                    div.panel-body
+                        form.form-inline(method="post" action="/newCampaign" role="form")
+                            label.h4(for="campaignTitle") Campaign Title: 
+                            input(type="text" name="campaignTitle")
+                            input.btn.btn-primary.pull-right(type='submit')
+
+            div.panel.panel-default
+                div.panel-heading#headingTwo(role="tab")
+                    h4.panel-title
+                        a(data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo") View existing campaign
+                div#collapseTwo.panel-collapse.collapse.in(role="tabpanel" aria-labelledby="headingTwo")
+                    div.panel-body
+                        ul.list-group
+                        if campaigns
+                            each campaign in campaigns
+                                li.list-group-item
+                                    a(href='/campaign/#{campaign.id}' ) #{campaign.title}
+                        else
+                            h2.text-center You do not currently have any campaigns!
+
+    div#main-panel.panel.panel-default.col-lg-6
+        div.panel-heading
+            h3.h2.text-center.panel-title Routes
+
+        div.panel-group#accordion2(role="tablist" aria-multiselectable="true")
+
+            div.panel.panel-default
+                div.panel-heading#headingThree(role="tab")
+                    h4.panel-title
+                        a(data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree") Create a new route
+                div#collapseThree.panel-collapse.collapse(role="tabpanel" aria-labelledby="headingThree")
+                    div.panel-body
+                        form.form-inline(method="post" action="/route/new" role="form")
+                            label.h4(for="route-title") Route Title: 
+                            input(type="text" name="route-title")
+                            input.btn.btn-primary.pull-right(type='submit')
+
+            div.panel.panel-default
+                div.panel-heading#headingFour(role="tab")
+                    h4.panel-title
+                        a(data-toggle="collapse" data-parent="#accordion2" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour") View existing route
+                div#collapseFour.panel-collapse.collapse.in(role="tabpanel" aria-labelledby="headingFour")
+                    div.panel-body
+                        ul.list-group
+                        if routes
+                            each route in routes
+                                li.list-group-item
+                                    a(href='/route/#{route.id}/view' ) #{route.title}
+                        else
+                            h2.text-center You do not currently have any routes!

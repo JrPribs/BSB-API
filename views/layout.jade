@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+    link(rel='stylesheet' href='/stylesheets/yeti-bootstrap.min.css')
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    if styles
+        for s in styles
+            link(rel="stylesheet" href=s)
+    script(src='/javascripts/prefixfree.min.js')
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+    if scripts
+        for s in scripts
+            script(src=s)
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+        div.navbar-header
+            a.navbar-brand(href="/") Bandit Sign Boss
+        if user
+            a.btn.btn-default(href='/logout') Log Out
+            a.btn.btn-default(href='/dashboard') Dashboard
+            if view
+                a.btn.btn-default(href='/campaign/#{campaign.id}') Back to Campaign
+        else
+            a.btn.btn-default(href='/login') Login
+            a.btn.btn-default(href='/register') Register
+            a.active.btn.btn-default(href='/') Home
+
+    block content
+
+    footer
+        p &copy; Apex Applications 
