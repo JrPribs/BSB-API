@@ -7,14 +7,21 @@ var Sequelize = require('sequelize');
 
 router.route('/:user')
     .get(function(req, res) {
-        var user = req.param('user');
         var campaigns = false;
         var routes = false;
+        var user = req.param('user');
+        Account.find({
+            where: {
+                username: 'user'
+            }
+        }).success(function(account) {
             res.json({
-                user: user,
+                user: account,
                 campaigns: campaigns,
                 routes: routes
             });
+        });
+
     });
 
 module.exports = router;
