@@ -7,6 +7,10 @@ var Sequelize = require('sequelize');
 
 router.route('/:user')
     .get(function(req, res) {
+        var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
+            dialect: 'mariadb'
+        });
+        var Account = sequelize.import('/home/BSB-API/models/account.js');
         var campaigns = false;
         var routes = false;
         var user = req.param('user');
