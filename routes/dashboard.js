@@ -7,7 +7,7 @@ var Sequelize = require('sequelize');
 
 router.route('/:user')
     .get(function(req, res) {
-        var user = req.params('user');
+        var user = req.param('user');
         var campaigns = false;
         var routes = false;
             res.json({

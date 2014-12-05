@@ -44,8 +44,8 @@ var port = process.env.PORT || 8080; // set our port
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router(); // get an instance of the express Router
-var sequelize = new Sequelize('bsb-api', 'bsb-api-admin', 'BSB0$$dbUser!', {
-    dialect: mariadb
+var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
+    dialect: 'mariadb'
 });
 var Account = sequelize.import(__dirname + "/models/account.js");
 var Route = sequelize.import(__dirname + "/models/route.js");

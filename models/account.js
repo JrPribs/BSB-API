@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 isEmail: true
             }
-        }
+        },
         address: DataTypes.STRING,
         phone: DataTypes.STRING,
         paid: {
