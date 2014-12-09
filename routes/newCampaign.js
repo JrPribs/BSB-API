@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var customDate = require('../custom_modules/dates');
 
-
 router.post('/', function(req, res) {
     var user = res.locals.user.username;
     Campaign.Create({

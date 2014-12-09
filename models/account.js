@@ -1,10 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
     return Account = sequelize.define('Account', {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.TEXT,
             unique: true,
-            primaryKey: true,
-            autoIncrement: true
+            primaryKey: true
         },
         username: {
             type: DataTypes.STRING,
