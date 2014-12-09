@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    sequelize.define('Account', {
+    return Account = sequelize.define('Account', {
         id: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -24,7 +24,26 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: false
         },
-        campaigns: DataTypes.BLOB,
-        routes: DataTypes.BLOB
+        campaigns: {
+            type: DataTypes.INTEGER,
+            references: "Campaign",
+            referencesKey: "id"
+        },
+        routes: {
+            type: DataTypes.INTEGER,
+            references: "Route",
+            referencesKey: "id"
+        }
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Account.hasMany(models.Campaign, {
+                    foreignKey: 'id'
+                });
+                Account.hasMany(models.Route, {
+                    foreignKey: 'id'
+                });
+            }
+        }
     });
 }

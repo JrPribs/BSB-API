@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Campaign', {
+    return Campaign = sequelize.define('Campaign', {
         id: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -8,7 +8,27 @@ module.exports = function(sequelize, DataTypes) {
         },
         title: DataTypes.STRING,
         description: DataTypes.TEXT,
-        user: DataTypes.INTEGER,
+        user: {
+            type: DataTypes.INTEGER,
+            references: "Account",
+            referencesKey: "id"
+        },
+        routes: {
+            type: DataTypes.INTEGER,
+            references: "Route",
+            referencesKey: "id"
+        }
         points: DataTypes.BLOB
-    })
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Campaign.belongsTo(model.Account, {
+                    foriegnKey: 'id'
+                });
+                Campaign.hasMany(models.Route, {
+                    foriegnKey: 'id'
+                });
+            }
+        }
+    });
 }
