@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING,
         email: {
             type: DataTypes.STRING,
-            unique: { name: 'email', msg: 'Email is already registered'},
+            unique: true,
             validate: {
                 isEmail: true
             }
