@@ -19,19 +19,27 @@ router.route('/:userId')
         });
     })
 
-    .post(function(req, res) {
-        var userId = req.param('userId');
-        var user = req.body;
-        Account.findOrCreate({
+.post(function(req, res) {
+    var userId = req.param('userId');
+    var user = req.body;
+    Account.findOrCreate({
+        where: {
             id: userId
-        }).success(function(account, created) {
-            if(created === true){
-                account.updateAttributes({username: user.username, name: user.fullName, email: user.email, campaigns: false, routes: false}).success(function(account){
-                    res.json(account);
-                });
-            }
-            res.json(account);
-        });
-    })
+        }
+    }).success(function(account, created) {
+        if (created === true) {
+            account.updateAttributes({
+                username: user.username,
+                name: user.fullName,
+                email: user.email,
+                campaigns: false,
+                routes: false
+            }).success(function(account) {
+                res.json(account);
+            });
+        }
+        res.json(account);
+    });
+})
 
 module.exports = router;
