@@ -5,7 +5,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 isAlphanumeric: true
             },
-            unique: true,
             primaryKey: true
         },
         username: {
@@ -15,6 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING,
         email: {
             type: DataTypes.STRING,
+            unique: { name: 'email', msg: 'Email is already registered'},
             validate: {
                 isEmail: true
             }
