@@ -20,18 +20,17 @@ router.route('/:userId')
     })
 
     .post(function(req, res) {
-        console.log(req);
         var userId = req.param('userId');
-        var campaigns = false;
-        var routes = false;
+        var user = req.body;
         Account.findOrCreate({
             id: userId
         }).success(function(account, created) {
-            res.json({
-                user: account,
-                campaigns: campaigns,
-                routes: routes
-            });
+            if(created === true){
+                account.updateAttributes({username: user.username, name: user.fullName, email: user.email, campaigns: false, routes: false}).success(function(account){
+                    res.json(account);
+                });
+            }
+            res.json(account);
         });
     })
 
