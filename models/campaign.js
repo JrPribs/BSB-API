@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             references: "Route",
             referencesKey: "id"
-        }
+        },
         points: DataTypes.BLOB
     }, {
         classMethods: {
