@@ -26,7 +26,7 @@ router.route('/:userId')
         where: {
             id: userId
         }
-    }).success(function(account, created) {
+    }).then(function(account, created) {
         if (created === true) {
             account.updateAttributes({
                 username: user.username,
@@ -34,11 +34,12 @@ router.route('/:userId')
                 email: user.email,
                 campaigns: false,
                 routes: false
-            }).success(function(account) {
+            }).then(function(account) {
                 res.json(account);
             });
+        } else {
+            res.json(account);
         }
-        res.json(account);
     });
 })
 
