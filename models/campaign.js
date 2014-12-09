@@ -18,7 +18,8 @@ module.exports = function(sequelize, DataTypes) {
             references: "Route",
             referencesKey: "id"
         },
-        points: DataTypes.BLOB
+        photo_count: DataTypes.INTEGER,
+        photos: DataTypes.BLOB
     }, {
         classMethods: {
             associate: function(models) {

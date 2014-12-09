@@ -5,15 +5,15 @@ var image = require('../custom_modules/image');
 function saveImageInfo(req, res, next) {
     var user = res.locals.user;
     var count = 0;
-    var campaignRef = new Firebase('https://vivid-fire-567.firebaseio.com/BSB/userStore/' + user.username + '/campaigns/' + req.campaignId);
     var imageCount = req.finalImages.length;
-    campaignRef.once('value', function(snapshot) {
-        var campaign = snapshot.val();
-        var currentCount = campaign.photoCount;
-        campaignRef.update({
-            photoCount: currentCount + imageCount
-        });
-    });
+    Campaign.find({
+        where: {
+            user: userId
+        }
+    }).success(function(campaign) {
+        campaign.increment('photo_count', imageCount)
+    }).success();
+
     var campaignPhotosRef = new Firebase('https://vivid-fire-567.firebaseio.com/BSB/userStore/' + user.username + '/campaigns/' + req.campaignId + '/photos');
     var finalImages = req.finalImages;
     finalImages.forEach(function(image) {
@@ -32,22 +32,21 @@ function saveImageInfo(req, res, next) {
 
 }
 
-
-
-
 router.route("/:campaignId")
     .post(image.processData, image.resizeImages, saveImageInfo, function(req, res) {
-        var campaignRef = new Firebase('https://vivid-fire-567.firebaseio.com/BSB/userStore/' + res.locals.user.username + '/campaigns/' + req.campaignId);
-        campaignRef.once('value', function(snapshot) {
-            var campaign = snapshot.val();
-            res.render("viewMap", {
+        var campaignId = req.param('campaignId');
+        Campaign.find({
+            where: {
+                id: campaignId
+            }
+        }).success(function(campaign) {
+            res.json({
                 title: "File(s) Uploaded Successfully!",
                 campaign: campaign,
                 view: true,
                 scripts: ['https://maps.googleapis.com/maps/api/js?key=AIzaSyCU42Wpv6BtNO51t7xGJYnatuPqgwnwk7c', '/javascripts/getPoints.js']
             });
         });
-
     });
 
 module.exports = router;
