@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router()
 var _ = require('lodash');
 var inspect = require('util');
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
-    dialect: 'mariadb'
-});
 
 router.route('/:user')
     .get(function(req, res) {
