@@ -1,26 +1,26 @@
-"use strict";
+var orm = require("../lib/model"),
+    Seq = orm.Seq();
 
-module.exports = function(sequelize, DataTypes) {
-    var Campaign = sequelize.define('Campaign', {
+module.exports = {
+    model: {
         id: {
-            type: DataTypes.INTEGER,
+            type: Seq.INTEGER,
             unique: true,
             primaryKey: true,
             autoIncrement: true
         },
-        title: DataTypes.STRING,
-        description: DataTypes.TEXT,
+        title: Seq.STRING,
+        description: Seq.TEXT,
         routes: {
-            type: DataTypes.INTEGER
+            type: Seq.INTEGER
         },
-        photo_count: DataTypes.INTEGER,
-        photos: DataTypes.BLOB
-    }, {
-          classMethods: {
-              associate: function(models) {
-                  Campaign.belongsTo(models.Account, {as: 'account', foreignKey: 'id', constraints: false });
-              }
-          }
-       }
-    );
+        photo_count: Seq.INTEGER,
+        photos: Seq.BLOB
+    },
+    relations: {
+        belongsTo: 'Account'
+    },
+    options: {
+        freezeTableName: true
+    }
 }

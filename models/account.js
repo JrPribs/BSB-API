@@ -1,44 +1,42 @@
-"use strict";
+var orm = require("../lib/model"),
+    Seq = orm.Seq();
 
-module.exports = function(sequelize, DataTypes) {
-        var Account = sequelize.define('Account', {
-                id: {
-                    type: DataTypes.STRING,
-                    unique: true,
-                    primaryKey: true
-                },
-                username: {
-                    type: DataTypes.STRING,
-                    unique: true
-                },
-                name: DataTypes.STRING,
-                email: {
-                    type: DataTypes.STRING,
-                    validate: {
-                        isEmail: true
-                    }
-                },
-                address: DataTypes.STRING,
-                phone: DataTypes.STRING,
-                paid: {
-                    type: DataTypes.BOOLEAN,
-                    allowNull: false,
-                    defaultValue: false
-                },
-                routes: {
-                    type: DataTypes.BOOLEAN
-                        //            references: "Route",
-                        //            referencesKey: "id"
-                }
-            }, {
-                  classMethods: {
-                      associate: function(models) {
-                          Account.hasMany(models.Campaign);
-                          Account.hasMany(models.Route);
-                      }
-                  }
-		}
-            );
-	return Account;
+module.exports = {
+    model: {
+        id: {
+            type: Seq.STRING,
+            unique: true,
+            primaryKey: true
+        },
+        username: {
+            type: Seq.STRING,
+            unique: true
+        },
+        name: Seq.STRING,
+        email: {
+            type: Seq.STRING,
+            validate: {
+                isEmail: true
+            }
+        },
+        address: Seq.STRING,
+        phone: Seq.STRING,
+        paid: {
+            type: Seq.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        routes: {
+            type: Seq.BOOLEAN
+                //            references: "Route",
+                //            referencesKey: "id"
+        }
+    },
+    relations: {
+        hasMany: 'Campaign'
+    },
+    options: {
+        freezeTableName: true
+    }
 }
-	
+

@@ -1,25 +1,22 @@
-"use strict";
+var orm = require("../lib/model"),
+    Seq = orm.Seq();
 
-module.exports = function(sequelize, DataTypes) {
-    return Route = sequelize.define('Route', {
-            id: {
-                type: DataTypes.INTEGER,
-                unique: true,
-                primaryKey: true,
-                autoIncrement: true
-            },
-            title: DataTypes.STRING,
-            description: DataTypes.TEXT,
-            points: DataTypes.BLOB
-	}
-//        }, {
-//            classMethods: {
-//                associate: function(models) {
-//                    Route.belongsTo(models.Account, {
-//                        foriegnKey: 'id'
-//                    });
-//                }
-//            }
-        }
-    );
+module.exports = {
+    model: {
+        id: {
+            type: Seq.INTEGER,
+            unique: true,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        title: Seq.STRING,
+        description: Seq.TEXT,
+        points: Seq.BLOB
+    },
+    relations: {
+        belongsTo: 'Account'
+    },
+    options: {
+        freezeTableName: true
+    }
 }

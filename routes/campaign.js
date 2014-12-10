@@ -1,19 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var customDate = require('../custom_modules/dates');
-var models =  require('../models');
+var orm = require('../lib/model');
 
 router.route('/new')
     .post(function(req, res) {
+        var Account = orm.model('Account');
         var userId = req.body.userId;
-        models.Account
+        Account
             .find({
                 where: {
                     id: userId
                 }
             })
             .complete(function(err, account) {
-                models.Campaign.create({
+                var Campaign = orm.model('Campaign');
+                Campaign.create({
                     title: req.body.campaignTitle,
                     createDate: customDate.formatDate(Date.now()),
                     createTime: customDate.formatTime(Date.now()),
@@ -37,8 +39,9 @@ router.route('/new')
 
 router.route('/:campaignId')
     .get(function(req, res) {
+        var Campaign = orm.model('Campaign');
         var campaignId = req.param('campaignId');
-        models.Campaign.find({
+        Campaign.find({
             where: {
                 id: campaignId
             }
