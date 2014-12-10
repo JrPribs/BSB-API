@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var debug = require('debug')('bsb-api');
 var app = require('../app');
 var env       = process.env.NODE_ENV || "development";
 var config    = require(__dirname + '/../config/config.json')[env];
@@ -12,6 +11,4 @@ require('../lib/model').setup('../models', config.database, config.username, con
     dialect: config.dialect
 });
 
-var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-});
+app.listen(app.get('port'));

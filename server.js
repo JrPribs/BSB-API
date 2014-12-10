@@ -17,8 +17,16 @@ var dashboard = require('./routes/dashboard');
 var campaign = require('./routes/campaign');
 var route = require('./routes/route')
 var newCampaign = require('./routes/newCampaign');
+var env       = process.env.NODE_ENV || "development";
+var config    = require('./config/config.json')[env];
+
+require('./lib/model').setup('/home/BSB-API/models', config.database, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect
+});
 
 var app = express();
+app.set('port', process.env.PORT || 8080);
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -100,3 +108,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.listen(app.get('port'));

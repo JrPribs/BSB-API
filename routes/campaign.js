@@ -22,8 +22,8 @@ router.route('/new')
                     photo_count: 0,
                     photos: 0
                 }).complete(function(err, campaign) {
-                    account.addCampaign(campaign).complete(function(err, account) {
-                        campaign.setAccount().complete(function(err) {
+		    campaign.setAccount(account).complete(function(){
+                    	account.addCampaign(campaign).complete(function(err, account) {
                             campaign.getAccount().complete(function(err, _account) {
                                 console.log(_account.values);
                                 res.json({
