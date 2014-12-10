@@ -20,9 +20,6 @@ module.exports = function(sequelize, DataTypes) {
                     Route.belongsTo(models.Account, {
                         foriegnKey: 'id'
                     });
-                    Route.belongsTo(models.Campaign, {
-                        foriegnKey: 'id'
-                    });
                 }
             }
         }

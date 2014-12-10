@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                Campaign.belongsTo(model.Account, {
+                Campaign.belongsTo(models.Account, {
                     foriegnKey: 'id'
                 });
                 Campaign.hasMany(models.Route, {
