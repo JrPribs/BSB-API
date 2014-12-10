@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
             },
             title: DataTypes.STRING,
             description: DataTypes.TEXT,
-            user: {
-                type: DataTypes.INTEGER,
+            account: {
+                type: DataTypes.STRING,
                 references: "Account",
                 referencesKey: "id"
             },
@@ -18,6 +18,9 @@ module.exports = function(sequelize, DataTypes) {
             classMethods: {
                 associate: function(models) {
                     Route.belongsTo(models.Account, {
+                        foriegnKey: 'id'
+                    });
+                    Route.belongsTo(models.Campaign, {
                         foriegnKey: 'id'
                     });
                 }

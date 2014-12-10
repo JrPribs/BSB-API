@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
         },
         title: DataTypes.STRING,
         description: DataTypes.TEXT,
-        user: {
-            type: DataTypes.INTEGER,
+        account: {
+            type: DataTypes.STRING,
             references: "Account",
             referencesKey: "id"
         },
