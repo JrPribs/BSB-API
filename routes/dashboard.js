@@ -4,18 +4,12 @@ var router = express.Router()
 router.route('/:userId')
     .get(function(req, res) {
         var userId = req.param('userId');
-        var campaigns = false;
-        var routes = false;
         Account.find({
             where: {
                 id: userId
             }
         }).success(function(account) {
-            res.json({
-                user: account,
-                campaigns: campaigns,
-                routes: routes
-            });
+            res.json(account);
         });
     })
 
@@ -24,13 +18,24 @@ router.route('/:userId')
     var user = req.body;
     Account.findOrCreate({
         where: {
-            id: userId,
-            username: user.username,
-            name: user.fullName,
-            email: user.email
+            id: userId
         }
-    }).success(function(account, created) {
-            res.json(account);
+    }).spread(function(account, created) {
+        if (created !== false) {
+            account.username = user.username;
+            account.name = user.fullName;
+            account.email = user.email;
+            account.save().then(function() {
+                Account.find({
+                    where: {
+                        id: userId
+                    }
+                }).then(function(account) {
+                    res.json(account);
+                });
+            });
+        } else {
+            res.json(account.dataValues);
         }
     });
 })
