@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     return Account = sequelize.define('Account', {
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: true,
             primaryKey: true
         },
