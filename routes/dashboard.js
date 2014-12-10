@@ -4,23 +4,27 @@ var router = express.Router()
 router.route('/:userId')
     .get(function(req, res) {
         var userId = req.param('userId');
-        Account.find({
-            where: {
-                id: userId
-            }
-        }).success(function(account) {
-            res.json(account);
-        });
+        Account
+            .find({
+                where: {
+                    id: userId
+                }
+            })
+            .complete(function(account) {
+                res.json(account);
+            });
     })
 
-    .post(function(req, res) {
-        var userId = req.param('userId');
-        var user = req.body;
-        Account.findOrCreate({
+.post(function(req, res) {
+    var userId = req.param('userId');
+    var user = req.body;
+    Account
+        .findOrCreate({
             where: {
                 id: userId
             }
-        }).spread(function(account, created) {
+        })
+        .spread(function(account, created) {
             if (created !== false) {
                 account.username = user.username;
                 account.name = user.fullName;
@@ -38,6 +42,6 @@ router.route('/:userId')
                 res.json(account.dataValues);
             }
         });
-    })
+})
 
 module.exports = router;

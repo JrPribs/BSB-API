@@ -2,8 +2,8 @@
 var path = require('path');
 var logger = require('morgan');
 var multer = require('multer');
-var express = require('express'); 
-var app = express(); 
+var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var Sequelize = require('sequelize');
@@ -47,10 +47,16 @@ var router = express.Router(); // get an instance of the express Router
 var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
     dialect: 'mariadb'
 });
-var Account = sequelize.import(__dirname + "/models/account.js");
-var Route = sequelize.import(__dirname + "/models/route.js");
-var Campaign = sequelize.import(__dirname + "/models/campaign.js");
-sequelize.sync();
+sequelize.import(__dirname + "/models/account.js");
+sequelize.import(__dirname + "/models/route.js");
+sequelize.import(__dirname + "/models/campaign.js");
+Account.hasMany(Campaign);
+Campaign.hasOne(Account);
+sequelize
+    .sync({force: true})
+    .complete(function(err){
+        console.log('completed');
+    });
 
 app.use(stormpath.init(app, {
     apiKeyFile: '/Users/jpribesh/.stormpath/apiKey.properties',

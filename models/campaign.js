@@ -16,16 +16,23 @@ module.exports = function(sequelize, DataTypes) {
         photo_count: DataTypes.INTEGER,
         photos: DataTypes.BLOB
     }, {
-        classMethods: {
-            associate: function(models) {
-                Campaign.hasOne(Account, {
-                    as: 'account',
-                    foriegnKey: 'id'
-                });
+        name: {
+            singular: 'campaign',
+            plural: 'campaigns'
+        }
+    }
+    //, {
+    //    classMethods: {
+    //        associate: function(models) {
+     //           Campaign.hasOne(Account, {
+       //             as: 'account',
+         //           foriegnKey: 'id'
+           //     });
                 //                Campaign.hasMany(models.Route, {
                 //                    foriegnKey: 'id'
                 //                });
-            }
-        }
-    });
+            //}
+    //    }
+    // }
+    );
 }
