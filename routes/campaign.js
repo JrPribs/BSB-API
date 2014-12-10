@@ -6,14 +6,14 @@ var customDate = require('../custom_modules/dates');
 router.route('/new')
     .post(function(req, res) {
         var userId = req.body.userId;
-        Campaign.Create({
+        Campaign.create({
             title: req.body.campaignTitle,
             createDate: customDate.formatDate(Date.now()),
             createTime: customDate.formatTime(Date.now()),
             photo_count: 0,
             photos: 0,
             account: userId
-        }).success(function(campaign) {
+        }).then(function(campaign) {
             res.json(campaign);
         });
     });

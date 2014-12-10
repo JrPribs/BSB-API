@@ -32,12 +32,12 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 Account.hasMany(Campaign, {
-                        as: 'campaigns'
-                    }
+                    as: 'campaigns'
                 });
-            //                Account.hasMany(models.Route, {
-            //                    foreignKey: 'id'
-            //                });
+                //                Account.hasMany(models.Route, {
+                //                    foreignKey: 'id'
+                //                });
+            }
         }
     });
 }
