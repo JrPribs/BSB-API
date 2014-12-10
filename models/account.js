@@ -30,17 +30,16 @@ module.exports = function(sequelize, DataTypes) {
                         //            references: "Route",
                         //            referencesKey: "id"
                 }
-            }
-//            , {
-//                classMethods: {
-//                    associate: function(models) {
-//                        Account.hasMany(Campaign, {
-//                            as: 'campaigns'
-//                        });
-                        //                Account.hasMany(models.Route, {
-                        //                    foreignKey: 'id'
-                    //                });
-  //                  }
-//                }
+            }, {
+                  classMethods: {
+                      associate: function(models) {
+                          Account.hasMany(models.Campaign, {
+                              as: 'campaigns'
+                          });
+                                          Account.hasMany(models.Route, {
+                                              foreignKey: 'id'
+                                      });
+                      }
+                  }
                 );
         }
