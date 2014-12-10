@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-        return Account = sequelize.define('Account', {
+        var Account = sequelize.define('Account', {
                 id: {
                     type: DataTypes.STRING,
                     unique: true,
@@ -33,13 +33,12 @@ module.exports = function(sequelize, DataTypes) {
             }, {
                   classMethods: {
                       associate: function(models) {
-                          Account.hasMany(models.Campaign, {
-                              as: 'campaigns'
-                          });
-                                          Account.hasMany(models.Route, {
-                                              foreignKey: 'id'
-                                      });
+                          Account.hasMany(models.Campaign);
+                          Account.hasMany(models.Route);
                       }
                   }
-                );
-        }
+		}
+            );
+	return Account;
+}
+	

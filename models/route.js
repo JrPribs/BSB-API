@@ -10,12 +10,8 @@ module.exports = function(sequelize, DataTypes) {
             },
             title: DataTypes.STRING,
             description: DataTypes.TEXT,
-            account: {
-                type: DataTypes.STRING
-//                references: "Account",
-//                referencesKey: "id"
-            },
             points: DataTypes.BLOB
+	}
 //        }, {
 //            classMethods: {
 //                associate: function(models) {

@@ -1,157 +1,70 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'firebase' ]
-2 info using npm@1.4.28
-3 info using node@v0.10.33
-4 warn package.json node-api@ No description
-5 warn package.json node-api@ No repository field.
-6 warn package.json node-api@ No README data
-7 warn package.json util@0.10.3 util is also the name of a node core module.
-8 verbose readDependencies using package.json deps
-9 verbose cache add [ 'firebase', null ]
-10 verbose cache add name=undefined spec="firebase" args=["firebase",null]
-11 verbose parsed url { protocol: null,
-11 verbose parsed url   slashes: null,
-11 verbose parsed url   auth: null,
-11 verbose parsed url   host: null,
-11 verbose parsed url   port: null,
-11 verbose parsed url   hostname: null,
-11 verbose parsed url   hash: null,
-11 verbose parsed url   search: null,
-11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: 'firebase',
-11 verbose parsed url   path: 'firebase',
-11 verbose parsed url   href: 'firebase' }
-12 silly lockFile 92f5e8df-firebase firebase
-13 verbose lock firebase /Users/jpribesh/.npm/92f5e8df-firebase.lock
-14 silly lockFile 92f5e8df-firebase firebase
-15 silly lockFile 92f5e8df-firebase firebase
-16 verbose addNamed [ 'firebase', '' ]
-17 verbose addNamed [ null, '*' ]
-18 silly lockFile 2bddc103-firebase firebase@
-19 verbose lock firebase@ /Users/jpribesh/.npm/2bddc103-firebase.lock
-20 silly addNameRange { name: 'firebase', range: '*', hasData: false }
-21 verbose request where is /firebase
-22 verbose request registry https://registry.npmjs.org/
-23 verbose request id ab0c31573ae5874d
-24 verbose url raw /firebase
-25 verbose url resolving [ 'https://registry.npmjs.org/', './firebase' ]
-26 verbose url resolved https://registry.npmjs.org/firebase
-27 verbose request where is https://registry.npmjs.org/firebase
-28 info trying registry request attempt 1 at 02:07:32
-29 verbose etag "CU8FKF69MMIZELGIRPGMPOKJI"
-30 http GET https://registry.npmjs.org/firebase
-31 http 200 https://registry.npmjs.org/firebase
-32 silly registry.get cb [ 200,
-32 silly registry.get   { date: 'Thu, 04 Dec 2014 07:07:32 GMT',
-32 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-32 silly registry.get     etag: '"99KULL3D828MPQ7DAI9V1ZPMY"',
-32 silly registry.get     'content-type': 'application/json',
-32 silly registry.get     'cache-control': 'max-age=60',
-32 silly registry.get     'content-length': '50198',
-32 silly registry.get     'accept-ranges': 'bytes',
-32 silly registry.get     via: '1.1 varnish',
-32 silly registry.get     age: '0',
-32 silly registry.get     'x-served-by': 'cache-jfk1023-JFK',
-32 silly registry.get     'x-cache': 'MISS',
-32 silly registry.get     'x-cache-hits': '0',
-32 silly registry.get     'x-timer': 'S1417676852.815346,VS0,VE77',
-32 silly registry.get     vary: 'Accept',
-32 silly registry.get     'keep-alive': 'timeout=10, max=50',
-32 silly registry.get     connection: 'Keep-Alive' } ]
-33 silly addNameRange number 2 { name: 'firebase', range: '*', hasData: true }
-34 silly addNameRange versions [ 'firebase',
-34 silly addNameRange   [ '0.0.0',
-34 silly addNameRange     '0.5.0',
-34 silly addNameRange     '0.5.1',
-34 silly addNameRange     '0.5.2',
-34 silly addNameRange     '0.5.3',
-34 silly addNameRange     '0.5.4',
-34 silly addNameRange     '0.6.0',
-34 silly addNameRange     '0.6.1',
-34 silly addNameRange     '0.6.2',
-34 silly addNameRange     '0.6.3',
-34 silly addNameRange     '0.6.4',
-34 silly addNameRange     '0.6.5',
-34 silly addNameRange     '0.6.6',
-34 silly addNameRange     '0.6.7',
-34 silly addNameRange     '0.6.8',
-34 silly addNameRange     '0.6.9',
-34 silly addNameRange     '0.6.10',
-34 silly addNameRange     '0.6.11',
-34 silly addNameRange     '0.6.14',
-34 silly addNameRange     '0.6.15',
-34 silly addNameRange     '0.6.16',
-34 silly addNameRange     '0.6.17',
-34 silly addNameRange     '0.6.19',
-34 silly addNameRange     '0.6.21',
-34 silly addNameRange     '0.6.22',
-34 silly addNameRange     '1.0.1',
-34 silly addNameRange     '1.0.1-npm',
-34 silly addNameRange     '1.0.2',
-34 silly addNameRange     '1.0.3',
-34 silly addNameRange     '1.0.4',
-34 silly addNameRange     '1.0.5',
-34 silly addNameRange     '1.0.10',
-34 silly addNameRange     '1.0.10-2',
-34 silly addNameRange     '1.0.11',
-34 silly addNameRange     '1.0.12',
-34 silly addNameRange     '1.0.13',
-34 silly addNameRange     '1.0.14',
-34 silly addNameRange     '1.0.15',
-34 silly addNameRange     '1.0.15-2',
-34 silly addNameRange     '1.0.15-3',
-34 silly addNameRange     '1.0.17',
-34 silly addNameRange     '1.0.18',
-34 silly addNameRange     '1.0.19',
-34 silly addNameRange     '1.0.20',
-34 silly addNameRange     '1.0.21',
-34 silly addNameRange     '1.0.23',
-34 silly addNameRange     '1.0.24',
-34 silly addNameRange     '1.1.0',
-34 silly addNameRange     '1.1.1',
-34 silly addNameRange     '1.1.2',
-34 silly addNameRange     '1.2.0-beta.1-0',
-34 silly addNameRange     '1.2.0-beta.2',
-34 silly addNameRange     '1.1.3',
-34 silly addNameRange     '1.2.0-beta.3',
-34 silly addNameRange     '2.0.0',
-34 silly addNameRange     '2.0.1',
-34 silly addNameRange     '2.0.2',
-34 silly addNameRange     '2.0.3',
-34 silly addNameRange     '2.0.4',
-34 silly addNameRange     '2.0.5' ] ]
-35 verbose addNamed [ 'firebase', '2.0.5' ]
-36 verbose addNamed [ '2.0.5', '2.0.5' ]
-37 silly lockFile dd5ad3ee-firebase-2-0-5 firebase@2.0.5
-38 verbose lock firebase@2.0.5 /Users/jpribesh/.npm/dd5ad3ee-firebase-2-0-5.lock
-39 silly lockFile 737f5221--org-firebase-firebase-2-0-5-tgz https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-40 verbose lock https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz /Users/jpribesh/.npm/737f5221--org-firebase-firebase-2-0-5-tgz.lock
-41 verbose addRemoteTarball [ 'https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz',
-41 verbose addRemoteTarball   '98514624e11b7829a4486c34089cb9ea149662c6' ]
-42 info retry fetch attempt 1 at 02:07:33
-43 verbose fetch to= /var/folders/3l/m1xxxbr50sl2vfb2_0q3jdq80000gn/T/npm-7050-z6-qcA4J/registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-44 http GET https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-45 http 200 https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-46 silly lockFile 737f5221--org-firebase-firebase-2-0-5-tgz https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-47 silly lockFile 737f5221--org-firebase-firebase-2-0-5-tgz https://registry.npmjs.org/firebase/-/firebase-2.0.5.tgz
-48 silly lockFile dd5ad3ee-firebase-2-0-5 firebase@2.0.5
-49 silly lockFile dd5ad3ee-firebase-2-0-5 firebase@2.0.5
-50 silly lockFile 2bddc103-firebase firebase@
-51 silly lockFile 2bddc103-firebase firebase@
-52 error Error: EACCES, mkdir '/Users/jpribesh/.npm/firebase/2.0.5'
-52 error  { [Error: EACCES, mkdir '/Users/jpribesh/.npm/firebase/2.0.5']
-52 error   errno: 3,
-52 error   code: 'EACCES',
-52 error   path: '/Users/jpribesh/.npm/firebase/2.0.5',
-52 error   parent: 'node-api' }
-53 error Please try running this command again as root/Administrator.
-54 error System Darwin 14.0.0
-55 error command "node" "/usr/local/bin/npm" "install" "firebase"
-56 error cwd /Users/jpribesh/Desktop/Code/BSB-API
-57 error node -v v0.10.33
-58 error npm -v 1.4.28
-59 error path /Users/jpribesh/.npm/firebase/2.0.5
-60 error code EACCES
-61 error errno 3
-62 error stack Error: EACCES, mkdir '/Users/jpribesh/.npm/firebase/2.0.5'
-63 verbose exit [ 3, true ]
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'nodejs-legacy' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 warn package.json bsb-api@ No description
+5 warn package.json bsb-api@ No repository field.
+6 warn package.json bsb-api@ No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'nodejs-legacy', null ]
+9 verbose cache add name=undefined spec="nodejs-legacy" args=["nodejs-legacy",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'nodejs-legacy',
+10 verbose parsed url   path: 'nodejs-legacy',
+10 verbose parsed url   href: 'nodejs-legacy' }
+11 silly lockFile 4f44b85d-nodejs-legacy nodejs-legacy
+12 verbose lock nodejs-legacy /root/.npm/4f44b85d-nodejs-legacy.lock
+13 silly lockFile 4f44b85d-nodejs-legacy nodejs-legacy
+14 silly lockFile 4f44b85d-nodejs-legacy nodejs-legacy
+15 verbose addNamed [ 'nodejs-legacy', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 153b0423-nodejs-legacy nodejs-legacy@
+18 verbose lock nodejs-legacy@ /root/.npm/153b0423-nodejs-legacy.lock
+19 silly addNameRange { name: 'nodejs-legacy', range: '*', hasData: false }
+20 verbose url raw nodejs-legacy
+21 verbose url resolving [ 'https://registry.npmjs.org/', './nodejs-legacy' ]
+22 verbose url resolved https://registry.npmjs.org/nodejs-legacy
+23 info trying registry request attempt 1 at 03:57:22
+24 http GET https://registry.npmjs.org/nodejs-legacy
+25 http 404 https://registry.npmjs.org/nodejs-legacy
+26 silly registry.get cb [ 404,
+26 silly registry.get   { date: 'Wed, 10 Dec 2014 08:57:22 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '52',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-iad2136-IAD',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1418201842.687283,VS0,VE54',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly lockFile 153b0423-nodejs-legacy nodejs-legacy@
+28 silly lockFile 153b0423-nodejs-legacy nodejs-legacy@
+29 error 404 'nodejs-legacy' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Linux 3.13.0-36-generic
+31 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "--save" "nodejs-legacy"
+32 error cwd /home/BSB-API
+33 error node -v v0.10.25
+34 error npm -v 1.3.10
+35 error code E404
+36 verbose exit [ 1, true ]

@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    return Campaign = sequelize.define('Campaign', {
+    var Campaign = sequelize.define('Campaign', {
         id: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -12,29 +12,15 @@ module.exports = function(sequelize, DataTypes) {
         description: DataTypes.TEXT,
         routes: {
             type: DataTypes.INTEGER
-                //             references: "Route",
-                //             referencesKey: "id"
         },
         photo_count: DataTypes.INTEGER,
         photos: DataTypes.BLOB
     }, {
-        name: {
-            singular: 'campaign',
-            plural: 'campaigns'
-        }
-    }
-    //, {
-    //    classMethods: {
-    //        associate: function(models) {
-     //           Campaign.hasOne(Account, {
-       //             as: 'account',
-         //           foriegnKey: 'id'
-           //     });
-                //                Campaign.hasMany(models.Route, {
-                //                    foriegnKey: 'id'
-                //                });
-            //}
-    //    }
-    // }
+          classMethods: {
+              associate: function(models) {
+                  Campaign.belongsTo(models.Account, {as: 'account', foreignKey: 'id', constraints: false });
+              }
+          }
+       }
     );
 }

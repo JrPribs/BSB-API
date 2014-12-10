@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var router = express.Router(); // get an instance of the express Router
 
 app.use(stormpath.init(app, {
-    apiKeyFile: '/Users/jpribesh/.stormpath/apiKey.properties',
+    apiKeyFile: '/home/.stormpath/apiKey.properties',
     application: 'https://api.stormpath.com/v1/applications/5OEXbG5BaE5SJQ5bGKHKeD',
     secretKey: '2gYxQyynHmlwPsghFwqDjdff3hIUgh778onj',
     enableUsername: true,
