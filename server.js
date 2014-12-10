@@ -50,8 +50,8 @@ var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
 sequelize.import(__dirname + "/models/account.js");
 sequelize.import(__dirname + "/models/route.js");
 sequelize.import(__dirname + "/models/campaign.js");
-Account.hasMany(Campaign);
-Campaign.hasOne(Account);
+Account.hasMany(Campaign, foreignKey: 'campaigns');
+Campaign.belongsTo(Account, {as: 'account', foreignKey: 'id', constraints: false });
 sequelize
     .sync({force: true})
     .complete(function(err){
