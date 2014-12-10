@@ -22,27 +22,30 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
-        },
-        campaigns: {
-            type: DataTypes.INTEGER,
-            references: "Campaign",
-            referencesKey: "id"
-        },
-        routes: {
-            type: DataTypes.INTEGER,
-            references: "Route",
-            referencesKey: "id"
-        }
-    }, {
-        classMethods: {
-            associate: function(models) {
-                Account.hasMany(models.Campaign, {
-                    foreignKey: 'id'
-                });
-                Account.hasMany(models.Route, {
-                    foreignKey: 'id'
-                });
-            }
         }
     });
 }
+
+//
+//        campaigns: {
+//            type: DataTypes.INTEGER,
+//            references: "Campaign",
+//            referencesKey: "id"
+//        },
+//        routes: {
+//            type: DataTypes.INTEGER,
+//            references: "Route",
+//            referencesKey: "id"
+//        }
+//    }, {
+//        classMethods: {
+//            associate: function(models) {
+//                Account.hasMany(models.Campaign, {
+//                    foreignKey: 'id'
+//                });
+//                Account.hasMany(models.Route, {
+//                    foreignKey: 'id'
+//                });
+//            }
+//        }
+//    }
