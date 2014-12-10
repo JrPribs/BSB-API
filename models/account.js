@@ -24,25 +24,25 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         },
         campaigns: {
-            type: DataTypes.INTEGER,
-            references: "Campaign",
-            referencesKey: "id"
+            type: DataTypes.BOOLEAN
+//            references: "Campaign",
+//            referencesKey: "id"
         },
         routes: {
-            type: DataTypes.INTEGER,
-            references: "Route",
-            referencesKey: "id"
+            type: DataTypes.BOOLEAN
+//            references: "Route",
+//            referencesKey: "id"
         }
-    }, {
-        classMethods: {
-            associate: function(models) {
-                Account.hasMany(models.Campaign, {
-                    foreignKey: 'id'
-                });
-                Account.hasMany(models.Route, {
-                    foreignKey: 'id'
-                });
-            }
-        }
+//    }, {
+//        classMethods: {
+//            associate: function(models) {
+//                Account.hasMany(models.Campaign, {
+//                    foreignKey: 'id'
+//                });
+//                Account.hasMany(models.Route, {
+//                    foreignKey: 'id'
+//                });
+//            }
+//        }
     });
 }
