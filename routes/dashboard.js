@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router()
+var models =  require('../models');
 
 router.route('/:acctId')
     .get(function(req, res) {
         var acctId = req.param('acctId');
-        Account
+        models.Account
             .find({
                 where: {
                     id: acctId
-                }
+                },
+                include: [models.Campaign]
             })
             .complete(function(account) {
                 res.json(account);
@@ -18,23 +20,24 @@ router.route('/:acctId')
 .post(function(req, res) {
     var acctId = req.param('acctId');
     var user = req.body;
-    Account
+    models.Account
         .findOrCreate({
             where: {
                 id: acctId
-            }
+            },
+            include: [models.Campaign]
         })
         .spread(function(account, created) {
             if (created !== false) {
-                account.setCampaign()
                 account.username = user.username;
                 account.name = user.fullName;
                 account.email = user.email;
                 account.save().then(function() {
-                    Account.find({
+                    models.Account.find({
                         where: {
                             id: acctId
-                        }
+                        },
+                        include: [ models.Campaign ]
                     }).then(function(account) {
                         res.json(account);
                     });

@@ -3,7 +3,6 @@ var path = require('path');
 var logger = require('morgan');
 var multer = require('multer');
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var Sequelize = require('sequelize');
@@ -18,6 +17,8 @@ var dashboard = require('./routes/dashboard');
 var campaign = require('./routes/campaign');
 var route = require('./routes/route')
 var newCampaign = require('./routes/newCampaign');
+
+var app = express();
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -38,25 +39,9 @@ app.use(multer({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-var port = process.env.PORT || 8080; // set our port
-
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router(); // get an instance of the express Router
-var sequelize = new Sequelize('bsb_api', 'bsb-api-admin', 'BSB0$$dbUser!', {
-    dialect: 'mariadb'
-});
-sequelize.import(__dirname + "/models/account.js");
-sequelize.import(__dirname + "/models/route.js");
-sequelize.import(__dirname + "/models/campaign.js");
-Account.hasMany(Campaign, foreignKey: 'campaigns');
-Campaign.belongsTo(Account, {as: 'account', foreignKey: 'id', constraints: false });
-sequelize
-    .sync({force: true})
-    .complete(function(err){
-        console.log('completed');
-    });
 
 app.use(stormpath.init(app, {
     apiKeyFile: '/Users/jpribesh/.stormpath/apiKey.properties',
@@ -115,7 +100,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-// START THE SERVER
-// =============================================================================
-app.listen(port);
