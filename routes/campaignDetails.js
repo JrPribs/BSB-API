@@ -5,27 +5,7 @@ var _ = require('lodash');
 var Firebase = require('firebase');
 
 
-router.get('/:campaignId', function(req, res) {
-    var user = res.locals.user.username;
-    var campaignId = req.param('campaignId');
-    var routes = false;
-    var routesRef = new Firebase('https://vivid-fire-567.firebaseio.com/BSB/userStore/' + user + '/routes');
-    routesRef.once('value', function(snapshot) {
-        var data = snapshot.val();
-        if (data !== null) {
-            routes = data;
-        }
-    });
-    var campaignRef = new Firebase('https://vivid-fire-567.firebaseio.com/BSB/userStore/' + user + '/campaigns/' + campaignId);
-    campaignRef.once("value", function(snapshot) {
-        var campaignData = snapshot.val();
-        res.render('campaignDetails', {
-            user: user,
-            campaign: campaignData,
-            routes: routes
-        });
-    });
-});
+// get campaign moved
 
 router.get('/:campaignId/view-map', stormpath.loginRequired, function(req, res) {
     var user = res.locals.user.username;
