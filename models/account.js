@@ -2,13 +2,12 @@ module.exports = function(sequelize, DataTypes) {
     return Account = sequelize.define('Account', {
         id: {
             type: DataTypes.STRING,
-            validate: {
-                isAlphanumeric: true
-            },
+            unique: true,
             primaryKey: true
         },
         username: {
             type: DataTypes.STRING,
+            unique: true
         },
         name: DataTypes.STRING,
         email: {
