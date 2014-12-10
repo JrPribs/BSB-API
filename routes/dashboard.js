@@ -35,7 +35,9 @@ router.route('/:userId')
                 campaigns: false,
                 routes: false
             }).then(function(account) {
-                res.json(account);
+                Account.find({where: {id: userId}}).then(function(user){
+                    res.json(user);
+                });
             });
         } else {
             res.json(account);
