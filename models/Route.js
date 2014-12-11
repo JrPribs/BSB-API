@@ -13,9 +13,7 @@ module.exports = {
         description: Seq.TEXT,
         points: Seq.BLOB,
         create_date: Seq.DATE,
-        create_time: Seq.DATE,
-        update_date: Seq.DATE,
-        update_time: Seq.DATE
+        update_date: Seq.DATE
     },
     relations: {
         belongsTo: 'Account',

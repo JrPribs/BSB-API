@@ -30,9 +30,7 @@ module.exports = {
             defaultValue: false
         },
         create_date: Seq.DATE,
-        create_time: Seq.DATE,
-        update_date: Seq.DATE,
-        update_time: Seq.DATE
+        update_date: Seq.DATE
     },
     relations: {
         hasMany: 'Campaign',

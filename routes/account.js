@@ -49,9 +49,7 @@ router.route('/:acctId')
                 account.name = user.fullName;
                 account.email = user.email;
                 account.create_date = date.formatDate(Date.now());
-                account.create_time = date.formatTime(Date.now());
                 account.update_date = date.formatDate(Date.now());
-                account.update_time = date.formatTime(Date.now());
                 account.save().then(function() {
                     Account.find({
                         where: {

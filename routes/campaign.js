@@ -23,7 +23,7 @@ router.route('/new')
                     photos: 0
                 }).complete(function(err, campaign) {
                     campaign.setAccount(account).complete(function() {
-                        account.addCampaigns(campaign).complete(function(err, account) {
+                        account.addCampaign(campaign).complete(function(err, account) {
                             campaign.getAccount().complete(function(err, _account) {
                                 res.json({
                                     campaign: campaign,
