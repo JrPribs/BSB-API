@@ -31,7 +31,7 @@ module.exports = {
         address: Seq.STRING
     },
     relations: {
-        belongsTo: 'Route',
+        belongsTo: 'Route'
     },
     options: {
         freezeTableName: false

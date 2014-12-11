@@ -34,7 +34,7 @@ module.exports = {
     },
     relations: {
         hasMany: 'Campaign',
-        hasMany: 'Route'
+//        hasMany: 'Route'
     },
     options: {
         freezeTableName: false

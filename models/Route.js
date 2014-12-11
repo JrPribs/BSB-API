@@ -16,7 +16,7 @@ module.exports = {
         update_date: Seq.DATE
     },
     relations: {
-        belongsTo: 'Account',
+//        belongsTo: 'Account',
         hasMany: 'Campaign',
         hasMany: 'Point'
     },

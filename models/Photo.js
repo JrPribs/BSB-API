@@ -48,7 +48,7 @@ module.exports = {
         upload_date: Seq.DATE
     },
     relations: {
-        belongsTo: 'Campaign',
+        belongsTo: 'Campaign'
     },
     options: {
         freezeTableName: false

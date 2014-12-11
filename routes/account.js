@@ -18,17 +18,18 @@ router.route('/:acctId')
                     _campaigns.forEach(function(campaign) {
                         campaigns.push(campaign.dataValues);
                     });
-                    account.getRoutes().complete(function(err, _routes) {
-                        var routes = [];
-                        _routes.forEach(function(route) {
-                            routes.push(route.dataValues);
-                        });
+//                    account.getRoutes().complete(function(err, _routes) {
+//                        var routes = [];
+//                        _routes.forEach(function(route) {
+//                            routes.push(route.dataValues);
+//                        });
                         res.json({
                             account: account,
-                            campaigns: campaigns,
-                            routes: routes
+                            campaigns: campaigns
+//			    ,
+//                            routes: routes
                         });
-                    });
+//                    });
                 });
             });
     })
