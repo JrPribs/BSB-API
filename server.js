@@ -22,7 +22,10 @@ var config    = require('./config/config.json')[env];
 
 require('./lib/model').setup('/home/BSB-API/models', config.database, config.username, config.password, {
     host: config.host,
-    dialect: config.dialect
+    dialect: config.dialect,
+    define: {
+	timestamps: false
+    }
 });
 
 var app = express();

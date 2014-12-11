@@ -11,9 +11,17 @@ router.route('/:acctId')
                 where: {
                     id: acctId
                 }
-            })
-            .complete(function(account) {
-                res.json(account);
+            }).complete(function(err, account) {
+                account.getCampaigns().complete(function(err, _campaigns){
+		    var campaigns = [];
+		    _campaigns.forEach(function(campaign){
+			campaigns.push(campaign.dataValues);
+		    });
+                    res.json({
+			account: account,
+			campaigns: campaigns
+		    });
+                });
             });
     })
 
@@ -48,3 +56,4 @@ router.route('/:acctId')
 })
 
 module.exports = router;
+

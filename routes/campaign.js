@@ -25,10 +25,9 @@ router.route('/new')
 		    campaign.setAccount(account).complete(function(){
                     	account.addCampaign(campaign).complete(function(err, account) {
                             campaign.getAccount().complete(function(err, _account) {
-                                console.log(_account.values);
                                 res.json({
-                                    cData: campaign,
-                                    ref: _account.values
+                                    campaign: campaign,
+                                    account: _account.values
                                 });
                             });
                         });
