@@ -11,10 +11,14 @@ module.exports = {
         },
         title: Seq.STRING,
         description: Seq.TEXT,
-        points: Seq.BLOB
+        points: Seq.BLOB,
+        create_date: Seq.DATE,
+        update_date: Seq.DATE
     },
     relations: {
-        belongsTo: 'Account'
+        belongsTo: 'Account',
+        belongsToMany: 'Campaign',
+        hasMany: 'Point'
     },
     options: {
         freezeTableName: false

@@ -20,23 +20,23 @@ module.exports = {
             }
         },
         address: Seq.STRING,
+        city: Seq.STRING,
+        state: Seq.STRING,
+        zip: Seq.STRING,
         phone: Seq.STRING,
         paid: {
             type: Seq.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        routes: {
-            type: Seq.BOOLEAN
-                //            references: "Route",
-                //            referencesKey: "id"
-        }
+        create_date: Seq.DATE,
+        update_date: Seq.DATE
     },
     relations: {
-        hasMany: 'Campaign'
+        hasMany: 'Campaign',
+        hasMany: 'Route'
     },
     options: {
         freezeTableName: false
     }
 }
-

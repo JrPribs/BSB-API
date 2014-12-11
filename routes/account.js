@@ -12,15 +12,22 @@ router.route('/:acctId')
                     id: acctId
                 }
             }).complete(function(err, account) {
-                account.getCampaigns().complete(function(err, _campaigns){
-		    var campaigns = [];
-		    _campaigns.forEach(function(campaign){
-			campaigns.push(campaign.dataValues);
-		    });
-                    res.json({
-			account: account,
-			campaigns: campaigns
-		    });
+                account.getCampaigns().complete(function(err, _campaigns) {
+                    var campaigns = [];
+                    _campaigns.forEach(function(campaign) {
+                        campaigns.push(campaign.dataValues);
+                    });
+                    account.getRoutes().complete(function(err, _routes) {
+                        var routes: [];
+                        _routes.forEach(function(route) {
+                            routes.push(route.dataValues);
+                        });
+                        res.json({
+                            account: account,
+                            campaigns: campaigns,
+                            routes: routes
+                        });
+                    });
                 });
             });
     })
@@ -56,4 +63,3 @@ router.route('/:acctId')
 })
 
 module.exports = router;
-

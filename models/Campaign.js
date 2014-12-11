@@ -11,14 +11,14 @@ module.exports = {
         },
         title: Seq.STRING,
         description: Seq.TEXT,
-        routes: {
-            type: Seq.INTEGER
-        },
         photo_count: Seq.INTEGER,
-        photos: Seq.BLOB
+        create_date: Seq.DATE,
+        update_date: Seq.DATE
     },
     relations: {
-        belongsTo: 'Account'
+        belongsTo: 'Account',
+        hasMany: 'Photo',
+        hasMany: 'Route'
     },
     options: {
         freezeTableName: false
