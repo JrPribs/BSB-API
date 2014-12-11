@@ -13,7 +13,9 @@ module.exports = {
         description: Seq.TEXT,
         photo_count: Seq.INTEGER,
         create_date: Seq.DATE,
-        update_date: Seq.DATE
+        create_time: Seq.DATE,
+        update_date: Seq.DATE,
+        update_time: Seq.DATE
     },
     relations: {
         belongsTo: 'Account',

@@ -11,7 +11,7 @@ module.exports = {
         order: Seq.INTEGER,
         comment: Seq.STRING,
         latitude: {
-            type: Sequelize.INTEGER,
+            type: Seq.INTEGER,
             allowNull: true,
             defaultValue: null,
             validate: {
@@ -20,7 +20,7 @@ module.exports = {
             }
         },
         longitude: {
-            type: Sequelize.INTEGER,
+            type: Seq.INTEGER,
             allowNull: true,
             defaultValue: null,
             validate: {

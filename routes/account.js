@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router()
 var orm = require("../lib/model");
+var date = require('../custom_modules/dates');
 
 router.route('/:acctId')
     .get(function(req, res) {
@@ -18,7 +19,7 @@ router.route('/:acctId')
                         campaigns.push(campaign.dataValues);
                     });
                     account.getRoutes().complete(function(err, _routes) {
-                        var routes: [];
+                        var routes = [];
                         _routes.forEach(function(route) {
                             routes.push(route.dataValues);
                         });
@@ -47,6 +48,10 @@ router.route('/:acctId')
                 account.username = user.username;
                 account.name = user.fullName;
                 account.email = user.email;
+                account.create_date = date.formatDate(Date.now());
+                account.create_time = date.formatTime(Date.now());
+                account.update_date = date.formatDate(Date.now());
+                account.update_time = date.formatTime(Date.now());
                 account.save().then(function() {
                     Account.find({
                         where: {
