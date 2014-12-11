@@ -13,7 +13,7 @@ var upload = require('./routes/upload');
 var index = require('./routes/index');
 var uploads = require('./routes/uploads');
 var upload = require('./routes/upload');
-var dashboard = require('./routes/dashboard');
+var account = require('./routes/account');
 var campaign = require('./routes/campaign');
 var route = require('./routes/route')
 var newCampaign = require('./routes/newCampaign');
@@ -74,7 +74,7 @@ router.get('/', function(req, res) {
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
-router.use('/dashboard', dashboard);
+router.use('/account', account);
 router.use('/upload', uploads);
 router.use('/uploaded', upload);
 router.use('/campaign', campaign);
