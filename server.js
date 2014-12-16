@@ -8,17 +8,13 @@ var stormpath = require('express-stormpath');
 var Sequelize = require('sequelize');
 
 // call in other module exports
-var uploads = require('./routes/uploads');
 var upload = require('./routes/upload');
 var index = require('./routes/index');
-var uploads = require('./routes/uploads');
-var upload = require('./routes/upload');
 var account = require('./routes/account');
 var campaign = require('./routes/campaign');
 var route = require('./routes/route')
-var newCampaign = require('./routes/newCampaign');
-var env       = process.env.NODE_ENV || "development";
-var config    = require('./config/config.json')[env];
+var env = process.env.NODE_ENV || "development";
+var config = require('./config/config.json')[env];
 
 require('./lib/model').setup('/home/BSB-API/models', config.database, config.username, config.password, {
     host: config.host,
@@ -75,8 +71,7 @@ router.get('/', function(req, res) {
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 router.use('/account', account);
-router.use('/upload', uploads);
-router.use('/uploaded', upload);
+router.use('/upload', upload);
 router.use('/campaign', campaign);
 router.use('/route', route);
 
