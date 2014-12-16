@@ -63,4 +63,25 @@ router.route("/:campaignId")
         });
     });
 
+    .get(function(req, res) {
+        var campaignId = req.param('campaignId');
+        Campaign.find({
+            where: {
+                id: campaignId
+            }
+        }).complete(function(err, campaign) {
+            campaign.getPhotos().complete(function(err, _photos) {
+                campaign.getAccount().complete(function(err, _account) {
+                    res.send({
+                        campaign: {
+                            info: campaign,
+                            photos: _photos.values
+                        },
+                        account: _account.values
+                    });
+                });
+            });
+        });
+    });
+
 module.exports = router;
