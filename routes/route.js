@@ -5,24 +5,38 @@ var customDate = require('../custom_modules/dates');
 var Account = orm.model('Account');
 var Route = orm.model('Route');
 var Point = orm.model('Point');
+var Campaign = orm.model('Campaign');
 
 router.route('/new')
     .post(function(req, res) {
         var userId = req.body.userId;
-        var routeTitle = req.body['route-title'];
+        var routeData = req.body['route'];
         Account.find({
             where: {
                 id: userId
             }
         }).complete(function(err, account) {
             Route.create({
-                title: routeTitle,
+                title: routeData.title,
                 create_date: customDate.formatDate(Date.now()),
                 update_date: customDate.formatDate(Date.now())
             }).complete(function(err, route) {
                 route.setAccount(account).complete(function(err) {
                     account.addRoute(route).complete(function(err) {
                         route.getAccount().complete(function(err, _account) {
+                            if (routeData.fromCampaign === true) {
+                                Campaign.find({
+                                    where: {
+                                        id: routeData.campaignId
+                                    }
+                                }).complete(function(err, campaign) {
+                                    route.addCampaign(campaign).complete(function(err) {
+                                        campaign.addRoute(route).complete(function(err) {
+                                            console.log(campaign);
+                                        });
+                                    });
+                                });
+                            }
                             res.json({
                                 route: route,
                                 account: _account.values,
@@ -77,27 +91,27 @@ router.route('/:routeId/points')
         });
     });
 
-    .get('/:routeId', function(req, res) {
-        var routeId = req.param('routeId');
-        Route.find({
-            where: {
-                id: routeId
-            }
-        }).complete(function(err, route) {
-            route.getAccount(function(err, _account) {
-                route.getPoints().complete(function(err, _points) {
-                    res.json({
-                        route: {
-                            info: route,
-                            points: _points.values
-                        },
-                        account: _account.values,
-                        styles: ['/stylesheets/routes.css'],
-                        scripts: ['http://code.jquery.com/jquery-1.11.0.min.js', 'http://open.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=Fmjtd%7Cluurn90rnd%2C8a%3Do5-9wtn5f', '/javascripts/viewRoute-MapQuest.js']
-                    });
+.get('/:routeId', function(req, res) {
+    var routeId = req.param('routeId');
+    Route.find({
+        where: {
+            id: routeId
+        }
+    }).complete(function(err, route) {
+        route.getAccount(function(err, _account) {
+            route.getPoints().complete(function(err, _points) {
+                res.json({
+                    route: {
+                        info: route,
+                        points: _points.values
+                    },
+                    account: _account.values,
+                    styles: ['/stylesheets/routes.css'],
+                    scripts: ['http://code.jquery.com/jquery-1.11.0.min.js', 'http://open.mapquestapi.com/sdk/js/v7.2.s/mqa.toolkit.js?key=Fmjtd%7Cluurn90rnd%2C8a%3Do5-9wtn5f', '/javascripts/viewRoute-MapQuest.js']
                 });
             });
         });
     });
+});
 
 module.exports = router;
