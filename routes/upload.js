@@ -61,7 +61,7 @@ router.route("/:campaignId")
                 });
             });
         });
-    });
+    })
 
     .get(function(req, res) {
         var campaignId = req.param('campaignId');

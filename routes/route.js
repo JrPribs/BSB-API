@@ -70,7 +70,6 @@ router.route('/:routeId/points')
                 }).complete(function(err, point) {
                     point.setRoute(route).complete(function(err) {
                         route.addPoint(point).complete(function(err) {
-                            continue;
                         });
                     });
                 });
@@ -89,9 +88,9 @@ router.route('/:routeId/points')
                 });
             });
         });
-    });
+    })
 
-.get('/:routeId', function(req, res) {
+.get(function(req, res) {
     var routeId = req.param('routeId');
     Route.find({
         where: {
