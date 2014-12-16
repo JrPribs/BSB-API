@@ -2,12 +2,11 @@ var express = require('express');
 var router = express.Router();
 var image = require('../custom_modules/image');
 var orm = require('../lib/model');
-var Campaign = orm.model('Campaign');
-var Photo = orm.model('Photo');
 
 function saveImageInfo(req, res, next) {
     var count = 0;
     var imageCount = req.finalImages.length;
+    var Campaign = orm.model('Campaign');
     Campaign.find({
         where: {
             user: userId
@@ -15,6 +14,7 @@ function saveImageInfo(req, res, next) {
     }).complete(function(err, campaign) {
         campaign.increment('photo_count', imageCount)
         var finalImages = req.finalImages;
+        var Photo = orm.model('Photo');
         finalImages.forEach(function(image) {
             Photo.create({
                 caption: image.caption,
@@ -42,6 +42,7 @@ function saveImageInfo(req, res, next) {
 router.route("/:campaignId")
     .post(image.processData, image.resizeImages, saveImageInfo, function(req, res) {
         var campaignId = req.param('campaignId');
+        var Campaign = orm.model('Campaign');
         Campaign.find({
             where: {
                 id: campaignId
@@ -65,6 +66,7 @@ router.route("/:campaignId")
 
     .get(function(req, res) {
         var campaignId = req.param('campaignId');
+        var Campaign = orm.model('Campaign');
         Campaign.find({
             where: {
                 id: campaignId

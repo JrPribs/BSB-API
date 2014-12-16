@@ -2,20 +2,18 @@ var express = require('express');
 var router = express.Router();
 var orm = require('../lib/model');
 var customDate = require('../custom_modules/dates');
-var Account = orm.model('Account');
-var Route = orm.model('Route');
-var Point = orm.model('Point');
-var Campaign = orm.model('Campaign');
 
 router.route('/new')
     .post(function(req, res) {
         var userId = req.body.userId;
         var routeData = req.body['route'];
+        var Account = orm.model('Account');
         Account.find({
             where: {
                 id: userId
             }
         }).complete(function(err, account) {
+            var Route = orm.model('Route');
             Route.create({
                 title: routeData.title,
                 create_date: customDate.formatDate(Date.now()),
@@ -25,6 +23,7 @@ router.route('/new')
                     account.addRoute(route).complete(function(err) {
                         route.getAccount().complete(function(err, _account) {
                             if (routeData.fromCampaign === true) {
+                                var Campaign = orm.model('Campaign');
                                 Campaign.find({
                                     where: {
                                         id: routeData.campaignId
@@ -55,18 +54,20 @@ router.route('/:routeId/points')
         var user = req.body.userId;
         var routeId = req.param('routeId');
         var pointCount = req.body.pointCount;
+        var Route = orm.model('Route');
         Route.find({
             where: {
                 id: routeId
             }
         }).complete(function(err, route) {
             for (var i = 1; i <= pointCount; i++) {
-                var point = req.body[i];
+                var pointData = req.body[i];
+                var Point = orm.model('Point');
                 Point.create({
                     order: i,
-                    comment: point.comment,
-                    latitude: point.lat,
-                    longitude: point.lng
+                    comment: pointData.comment,
+                    latitude: pointData.lat,
+                    longitude: pointData.lng
                 }).complete(function(err, point) {
                     point.setRoute(route).complete(function(err) {
                         route.addPoint(point).complete(function(err) {
@@ -92,6 +93,7 @@ router.route('/:routeId/points')
 
 .get(function(req, res) {
     var routeId = req.param('routeId');
+    var Route = orm.model('Route');
     Route.find({
         where: {
             id: routeId
